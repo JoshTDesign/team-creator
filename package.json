@@ -1,0 +1,22 @@
+{
+  "name": "team-creator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshTDesign/team-creator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoshTDesign/team-creator/issues"
+  },
+  "homepage": "https://github.com/JoshTDesign/team-creator#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
+}
