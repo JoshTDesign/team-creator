@@ -8,10 +8,8 @@ const Intern = require('./lib/Intern');
 //global variables
 const teamArray = [];
 
-//TODO:
+
 const init = () => {
-//init is going to call different question loops depending on what is selected at the beginning of the
-//question loops will be: Manager, Engineer, Intern,
 console.log(`
 Welcome to Team Creator
 -----------------------
@@ -19,64 +17,6 @@ Developed by JTD
 GitHub profile: JoshTDesign
 
 `)
-inquirer
-    .prompt ([
-        {
-            message: ``,
-            type:`list`,
-            choices: [`Build a new team`, `View a saved team`],
-            name:`begin`
-        }
-    ])
-    .then (answer => {
-        switch (answer.begin) {
-            case 'Build a new team': 
-                buildTeam();
-                break;
-            case 'View a saved team':
-                viewSaved();
-                break;
-        }
- 
-    })
-}
-
-const buildTeam = () => {
-    inquirer
-        .prompt([
-            {
-                name:'position',
-                type:'list',
-                choices:['Manager', 'Engineer', 'Intern', 'Done'],
-                message: 'What role would you like to add?'
-            }
-        ])
-        .then(answer => {
-            switch (answer.position) {
-                case 'Manager':
-                    managerOnboard();
-                    break;
-                case 'Engineer':
-                    engineerOnboard();
-                    break;
-                case 'Intern':
-                    internOnboard();
-                    break;
-                case 'Done':
-                    renderTeam();
-                    break;
-                default:
-                    init();
-            }
-        })
-}
-
-const viewSaved = () => {
-    console.log('viewSaved started');
-}
-
-
-const managerOnboard = () => {
 
     inquirer
         .prompt([
@@ -100,23 +40,45 @@ const managerOnboard = () => {
             const thisEmployee = new Manager(answer.name, Math.floor(Math.random()*1000), answer.email, answer.phone);
             teamArray.push(thisEmployee);
             console.log('Added.');
-            inquirer
-                .prompt([
-                    {
-                    name:'another',
-                    type:'list',
-                    choices:['yes', 'no'],
-                    message:'Add another manager?'
-                    }
-                ])
-                .then(answer => {
-                    if (answer.another == 'yes') {
-                        managerOnboard();
-                    } else {
-                        buildTeam();
-                    }
-                })
+            buildTeam(); 
         })
+}
+
+const buildTeam = () => {
+    inquirer
+        .prompt([
+            {
+                name:'position',
+                type:'list',
+                choices:['Engineer', 'Intern', 'Done'],
+                message: 'What role would you like to add?'
+            }
+        ])
+        .then(answer => {
+            switch (answer.position) {
+                case 'Engineer':
+                    engineerOnboard();
+                    break;
+                case 'Intern':
+                    internOnboard();
+                    break;
+                case 'Done':
+                    renderTeam();
+                    break;
+                default:
+                    init();
+            }
+        })
+}
+
+const viewSaved = () => {
+    console.log('viewSaved started');
+}
+
+
+const managerOnboard = () => {
+
+
 }
 
 
@@ -207,9 +169,6 @@ const internOnboard = () => {
 const renderTeam = () => {
     console.log(teamArray);
 }
-
-
-
 
 
 init();
