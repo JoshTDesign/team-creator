@@ -66,15 +66,16 @@ const buildTeam = () => {
                     internOnboard();
                     break;
                 case 'Done':
-                    for (let i = 0; i < teamArray.length; i++) {
-                        if (teamArray[i].getRole() === 'Manager') {
-                            console.log(makeManagerCard(teamArray[i]));
-                        } else if (teamArray[i].getRole() === 'Engineer') {
-                            console.log(makeEngineerCard(teamArray[i]));
-                        } else {
-                            console.log(makeInternCard(teamArray[i]));
-                        }
-                    };
+                buildHtml();    
+                // for (let i = 0; i < teamArray.length; i++) {
+                //         if (teamArray[i].getRole() === 'Manager') {
+                //             console.log(makeManagerCard(teamArray[i]));
+                //         } else if (teamArray[i].getRole() === 'Engineer') {
+                //             console.log(makeEngineerCard(teamArray[i]));
+                //         } else {
+                //             console.log(makeInternCard(teamArray[i]));
+                //         }
+                //     };
                     break;
                 default:
                     init();
@@ -86,24 +87,86 @@ const viewSaved = () => {
     console.log('viewSaved started');
 }
 
+const buildHtml = () => {
+    let htmlContent = '';
+    let htmlHead = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./lib/style.css">
+    <title>Team</title>
+</head>
+
+<body>
+    <header>
+        <h1>Team Creator</h1>
+    </header>  
+    <main>
+        <div class="container">
+`;
+    for (let i = 0; i < teamArray.length; i++) {
+        if (teamArray[i].getRole() === 'Manager') {
+            htmlContent = htmlContent.concat(makeManagerCard(teamArray[i]));
+        } else if (teamArray[i].getRole() === 'Engineer') {
+            htmlContent = htmlContent.concat(makeEngineerCard(teamArray[i]));
+        } else {
+            htmlContent = htmlContent.concat(makeInternCard(teamArray[i]));
+        }
+    };
+
+    const htmlFoot = `
+    </div>
+    </main>  
+    <footer></footer>
+</body>
+</html>
+    `
+    let fullHtml = htmlHead + htmlContent + htmlFoot;
+    writeToFile('team', fullHtml);
+}
+
+
+const writeToFile = (filename, data) => {
+        fs.writeFile(filename + '.html', data, (err) => 
+        err ? console.error(err) : console.log('Your team page has been created!')
+        );
+    };
+
 const makeManagerCard = (data) => {
     return `
-        <div>
+        <div class="card">
             <h1>${data.name}</h1>
+            <h2>Manager</h2>
+            <p>${data.email}</p>
+            <p>${data.phone}</p>
+            <p>${data.id}</p>
+
         </div>
     `
 }
 const makeEngineerCard = (data) => {
     return `
-        <div>
+        <div class="card">
             <h1>${data.name}</h1>
+            <h2>Engineer</h2>
+            <p>${data.email}</p>
+            <p>${data.github}</p>
+            <p>${data.id}</p>
+
         </div>
     `
 }
 const makeInternCard = (data) => {
     return `
-        <div>
+        <div class="card">
             <h1>${data.name}</h1>
+            <h2>Intern</h2>
+            <p>${data.email}</p>
+            <p>${data.school}</p>
+            <p>${data.id}</p>
         </div>
     `
 }
