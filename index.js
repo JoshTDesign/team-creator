@@ -120,7 +120,7 @@ const buildHtml = () => {
     const htmlFoot = `
     </div>
     </main>  
-    <footer></footer>
+    <footer><p>Created with love by JTD</footer>
 </body>
 </html>
     `
@@ -137,36 +137,34 @@ const writeToFile = (filename, data) => {
 
 const makeManagerCard = (data) => {
     return `
-        <div class="card">
+        <div class="card" id="manager">
             <h1>${data.name}</h1>
             <h2>Manager</h2>
-            <p>${data.email}</p>
-            <p>${data.phone}</p>
-            <p>${data.id}</p>
-
+            <p><span>e-mail: </span><a href="mailto:${data.email}">${data.email}</a></p>
+            <p><span>phone: </span>${data.phone}</p>
+            <p><span>ID: </span>${data.id}</p>
         </div>
     `
 }
 const makeEngineerCard = (data) => {
     return `
-        <div class="card">
+        <div class="card" id="engineer">
             <h1>${data.name}</h1>
             <h2>Engineer</h2>
-            <p>${data.email}</p>
-            <p>${data.github}</p>
-            <p>${data.id}</p>
-
+            <p><span>e-mail: </span><a href="mailto:${data.email}">${data.email}</a></p>
+            <p><span>gitHub profile: </span><a href="http://www.github.com/${data.github}">${data.github}</a></p>
+            <p><span>ID: </span>${data.id}</p>
         </div>
     `
 }
 const makeInternCard = (data) => {
     return `
-        <div class="card">
+        <div class="card" id="intern">
             <h1>${data.name}</h1>
             <h2>Intern</h2>
-            <p>${data.email}</p>
-            <p>${data.school}</p>
-            <p>${data.id}</p>
+            <p><span>e-mail: </span><a href="mailto:${data.email}">${data.email}</a></p>
+            <p><span>school: </span>${data.school}</p>
+            <p><span>ID: </span>${data.id}</p>
         </div>
     `
 }

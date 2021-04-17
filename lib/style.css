@@ -1,7 +1,12 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
     padding: 0;
     margin: 0;
+    background-color:#DEE2EC;
+    font-family: 'roboto slab', 'Roboto', sans-serif;
 }
 
 .container {
@@ -13,10 +18,11 @@ body {
     margin-right: auto;
     flex-wrap: wrap;
     justify-content: center;
+    padding:50px;
 }
 
 header {
-    background-color: #dddddd;
+    background-color: #fff;
     margin:0;
     padding: 0;
 }
@@ -26,6 +32,8 @@ header h1 {
     height: 100px;
     text-align: center;
     padding-top: 50px;
+    color: #053E76;
+    background-color: white;
 }
 
 .card {
@@ -34,20 +42,77 @@ header h1 {
     padding: 0px;
     margin: 10px;
     border-radius: 10px;
-    box-shadow: 2px 2px 8px 2px #dddddd;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+    /* box-shadow: 2px 2px 8px 2px rgba(5, 62, 118, 0.2); */
+  
+    background-color: white;
 }
+
+
 
 .card h1 {
-    background-color: #bebebe;
-    padding: 10px;
+    padding: 20px 20px 0 20px;
     margin: 0px;
     border-radius: 9px 9px 0 0;
-}
+    font-size: 120%;
+    color: #053E76;
 
-.card li {
-    border-top: 1px solid #bebebe;
+}
+.card h2 {
+    padding: 0px 20px 20px 20px;
     margin: 0px;
-    height: 50px;
+    font-size: 80%;
+    font-family: 'roboto', sans-serif;
+    color: #053E76;
+
+    /* background-image: linear-gradient(#fff, rgb(191, 204, 218)); */
 }
 
+.card p {
+    margin: 0px;
+    height: 30px;
+    padding: 15px 20px 5px 20px;
+    border-top: 1px solid #DEE2EC;
+    font-family: 'roboto', sans-serif;
+    font-weight: medium;
+    font-size: 100%;
+    color: #053E76;
+}
+
+.card a {
+    color:#053E76;
+}
+
+span {
+    color: #869eb6;
+    text-transform: uppercase;
+    font-size: 80%;
+}
+
+#manager h1, #manager h2 {
+    background-color: #e0e9f2;
+}
+
+#intern h1, #intern h2 {
+    color:#aa3600;
+}
+
+footer p {
+    color:#4583c0;
+    text-align: center;
+    font-size:80%;
+    position: absolute;
+    bottom: 0px;
+    margin: auto;
+    width: 100vw;
+    background-color:#053E76;
+    margin:0;
+    padding:20px 0 20px 0;
+}
 
