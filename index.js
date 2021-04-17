@@ -4,12 +4,15 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generateHtml = require('./lib/generateHtml');
+
 
 //global variables
 const teamArray = [];
 
 
 const init = () => {
+
 console.log(`
 Welcome to Team Creator
 -----------------------
@@ -63,7 +66,15 @@ const buildTeam = () => {
                     internOnboard();
                     break;
                 case 'Done':
-                    renderTeam();
+                    for (let i = 0; i < teamArray.length; i++) {
+                        if (teamArray[i].getRole() === 'Manager') {
+                            console.log(makeManagerCard(teamArray[i]));
+                        } else if (teamArray[i].getRole() === 'Engineer') {
+                            console.log(makeEngineerCard(teamArray[i]));
+                        } else {
+                            console.log(makeInternCard(teamArray[i]));
+                        }
+                    };
                     break;
                 default:
                     init();
@@ -75,10 +86,26 @@ const viewSaved = () => {
     console.log('viewSaved started');
 }
 
-
-const managerOnboard = () => {
-
-
+const makeManagerCard = (data) => {
+    return `
+        <div>
+            <h1>${data.name}</h1>
+        </div>
+    `
+}
+const makeEngineerCard = (data) => {
+    return `
+        <div>
+            <h1>${data.name}</h1>
+        </div>
+    `
+}
+const makeInternCard = (data) => {
+    return `
+        <div>
+            <h1>${data.name}</h1>
+        </div>
+    `
 }
 
 
@@ -168,7 +195,10 @@ const internOnboard = () => {
 
 const renderTeam = () => {
     console.log(teamArray);
+    fs.writeFile('team.html', 'test', (err) => {
+        if (err) throw err; })
 }
+
 
 
 init();
