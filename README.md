@@ -22,7 +22,7 @@ Team creator is a handy, command-line tool for create a simple html page for dev
 Team Creator is designed to allow for each team to have one manager, and an unlimited number of engineers and interns. The simple html page that gets created is colorful and minimalist. Each job title is personalized with a unique color and icon, along with contact info fields specific to that job. The html file is also adaptable to any screen size and will expand to an unlimited number of team members.
 
 
-![](https://drive.google.com/file/d/11_gRVMNez4-GZi8KgCUwrzFfEXfjT3pe/view)
+![](https://drive.google.com/file/d/1BcuJOncwpCFrWfIQ8uutbqASHaELKosL/view?usp=sharing)
 
 
 ### Challenges encountered  
