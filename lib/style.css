@@ -36,6 +36,11 @@ header h1 {
     background-color: white;
 }
 
+.cardHead {
+    display: flex;
+    flex-direction: row;
+}
+
 .card {
     width: 300px;
     height: auto;
@@ -95,8 +100,37 @@ span {
     font-size: 80%;
 }
 
-#manager h1, #manager h2 {
+/* #manager h1, #manager h2 {
     background-color: #e0e9f2;
+} */
+
+#managerHead {
+    background-color: #e0e9f2;
+    display: flex;
+    border-radius: 10px 10px 0 0;
+}
+
+#managerHead img {
+    padding-left: 10px;
+}
+
+#engineerHead {
+    display: flex;
+    border-radius: 10px 10px 0 0;
+}
+
+#engineerHead img {
+    padding-left: 10px;
+}
+
+#internHead {
+    background-color: #f8e0d5;
+    display: flex;
+    border-radius: 10px 10px 0 0;
+}
+
+#internHead img {
+    padding-left: 10px;
 }
 
 #intern h1, #intern h2 {

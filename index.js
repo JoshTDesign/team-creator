@@ -4,7 +4,6 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const generateHtml = require('./lib/generateHtml');
 
 
 //global variables
@@ -13,6 +12,8 @@ const teamArray = [];
 
 const init = () => {
 
+
+//Logs a welcome message for the user
 console.log(`
 Welcome to Team Creator
 -----------------------
@@ -20,7 +21,7 @@ Developed by JTD
 GitHub profile: JoshTDesign
 
 `)
-
+    //prompts the user to give information for the manager position
     inquirer
         .prompt([
             {
@@ -39,6 +40,8 @@ GitHub profile: JoshTDesign
                 message:`Manager phone number?`
             }
         ])
+
+        //creates an object for the manager and adds that object to the 'teamArray'. Then calls the buildTeam function.
         .then(answer => {
             const thisEmployee = new Manager(answer.name, Math.floor(Math.random()*1000), answer.email, answer.phone);
             teamArray.push(thisEmployee);
@@ -47,8 +50,11 @@ GitHub profile: JoshTDesign
         })
 }
 
+
+//function that contains loop for adding new team members
 const buildTeam = () => {
     inquirer
+        //prompts user for which position to add first
         .prompt([
             {
                 name:'position',
@@ -57,6 +63,7 @@ const buildTeam = () => {
                 message: 'What role would you like to add?'
             }
         ])
+        //calls for inquirer questions based on response to 'position' prompt. Calls the htmlBuild function when 'done'.
         .then(answer => {
             switch (answer.position) {
                 case 'Engineer':
@@ -66,16 +73,7 @@ const buildTeam = () => {
                     internOnboard();
                     break;
                 case 'Done':
-                buildHtml();    
-                // for (let i = 0; i < teamArray.length; i++) {
-                //         if (teamArray[i].getRole() === 'Manager') {
-                //             console.log(makeManagerCard(teamArray[i]));
-                //         } else if (teamArray[i].getRole() === 'Engineer') {
-                //             console.log(makeEngineerCard(teamArray[i]));
-                //         } else {
-                //             console.log(makeInternCard(teamArray[i]));
-                //         }
-                //     };
+                    buildHtml();    
                     break;
                 default:
                     init();
@@ -83,10 +81,7 @@ const buildTeam = () => {
         })
 }
 
-const viewSaved = () => {
-    console.log('viewSaved started');
-}
-
+//Function that puts together all card html snippets once the user chooses 'done'
 const buildHtml = () => {
     let htmlContent = '';
     let htmlHead = `
@@ -135,33 +130,55 @@ const writeToFile = (filename, data) => {
         );
     };
 
+
+//Generates html code for Manager cards
 const makeManagerCard = (data) => {
     return `
         <div class="card" id="manager">
-            <h1>${data.name}</h1>
-            <h2>Manager</h2>
+            <div id="managerHead">
+                <img src="./lib/ManagerSVG.svg" width="40px"> 
+                <div>
+                    <h1>${data.name}</h1>
+                    <h2>Manager</h2>
+                </div>
+            </div>
+
             <p><span>e-mail: </span><a href="mailto:${data.email}">${data.email}</a></p>
             <p><span>phone: </span>${data.phone}</p>
             <p><span>ID: </span>${data.id}</p>
         </div>
     `
 }
+
+//Generates html code for Engineer cards
 const makeEngineerCard = (data) => {
     return `
         <div class="card" id="engineer">
-            <h1>${data.name}</h1>
-            <h2>Engineer</h2>
+            <div id="engineerHead">
+                <img src="./lib/EngineerSVG.svg" width="40px"> 
+                <div>
+                    <h1>${data.name}</h1>
+                    <h2>Engineer</h2>
+                </div>
+            </div>
             <p><span>e-mail: </span><a href="mailto:${data.email}">${data.email}</a></p>
             <p><span>gitHub profile: </span><a href="http://www.github.com/${data.github}">${data.github}</a></p>
             <p><span>ID: </span>${data.id}</p>
         </div>
     `
 }
+
+//Generates html code for Intern cards
 const makeInternCard = (data) => {
     return `
         <div class="card" id="intern">
-            <h1>${data.name}</h1>
-            <h2>Intern</h2>
+            <div id="internHead">
+                <img src="./lib/InternSVG.svg" width="40px"> 
+                <div>
+                    <h1>${data.name}</h1>
+                    <h2>Intern</h2>
+                </div>
+            </div>
             <p><span>e-mail: </span><a href="mailto:${data.email}">${data.email}</a></p>
             <p><span>school: </span>${data.school}</p>
             <p><span>ID: </span>${data.id}</p>
@@ -169,7 +186,7 @@ const makeInternCard = (data) => {
     `
 }
 
-
+//Prompts user for new engineer info
 const engineerOnboard = () => {
     inquirer
     .prompt([
@@ -190,6 +207,7 @@ const engineerOnboard = () => {
         }
     ])
     .then(answer => {
+        //Takes the answers to the questions and builds a new object for the employee and adds it to the teamArray.
         const thisEmployee = new Engineer(answer.name, Math.floor(Math.random()*1000), answer.email, answer.github);
         teamArray.push(thisEmployee);
         console.log('Added.');
@@ -212,6 +230,7 @@ const engineerOnboard = () => {
     })
 }
 
+//Prompts user for new intern info
 const internOnboard = () => {
     inquirer
     .prompt([
@@ -231,6 +250,7 @@ const internOnboard = () => {
             message:`Intern school?`
         }
     ])
+    //Takes the answers to the questions and builds a new object for the employee and adds it to the teamArray.
     .then(answer => {
         const thisEmployee = new Intern(answer.name, Math.floor(Math.random()*1000), answer.email, answer.school);
         teamArray.push(thisEmployee);
@@ -254,13 +274,13 @@ const internOnboard = () => {
     })
 }
 
+//writes complete html to the team.html file
 const renderTeam = () => {
     console.log(teamArray);
     fs.writeFile('team.html', 'test', (err) => {
         if (err) throw err; })
 }
 
-
-
+//Starts functions to begin program
 init();
 
