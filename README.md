@@ -25,7 +25,7 @@ Team Creator is designed to allow for each team to have one manager, and an unli
 This project represents my introduction to using subclass to create multiple related objects. It was a fun challenge to take those objects and manipulate them into a completely dynamic html file. This was also my first attempt at creating a Jest testing suite to assist in the programming process.
 
 ### How to install  
-To install Team Creator, simply go to my repo, clone the repo link to your local machine, and enjoy!
+To install Team Creator, simply go to my repo, clone the repo link to your local machine. Make sure in use the `npm intall` command to install the dependencies before you try to run. Then enjoy!
 
 ### Where credit is due  
 Team Creator relies on the fantastic Inquirer tool for command-line queries.
